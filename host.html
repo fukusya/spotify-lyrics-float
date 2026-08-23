@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<title>Spotify Lyrics Float</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="setup" class="setup">
+    <h3 style="margin:0">Spotify Lyrics Float — Setup</h3>
+    <p class="hint">
+      Butuh sekali saja. Buat app gratis di
+      <a href="https://developer.spotify.com/dashboard" target="_blank" style="color:#6ee08a">Spotify Developer Dashboard</a>,
+      lalu tempel Client ID-nya di bawah, dan tambahkan Redirect URI ini ke pengaturan app-mu.
+    </p>
+    <label>Redirect URI (tambahkan ke Spotify app settings)</label>
+    <div class="copy-box">
+      <input id="redirectUri" type="text" readonly />
+      <button id="copyRedirect" class="secondary">Copy</button>
+    </div>
+    <label for="clientIdInput">Spotify Client ID</label>
+    <input id="clientIdInput" type="text" placeholder="contoh: 5f8a1b2c3d4e..." />
+    <div class="row">
+      <button id="saveClientId" class="primary">Simpan</button>
+      <button id="loginBtn" class="secondary">Connect ke Spotify</button>
+    </div>
+    <div id="setupMsg" class="hint"></div>
+  </div>
+
+  <div id="panel" class="panel hidden">
+    <div class="topbar">
+      <img id="cover" class="cover" alt="" />
+      <div class="track-meta">
+        <div id="trackName" class="track-name">—</div>
+        <div id="trackArtist" class="track-artist">—</div>
+      </div>
+      <button id="openSpotifyBtn" class="icon-btn" title="Buka lagu ini di Spotify" disabled>↗</button>
+      <button id="minimizeBtn" class="icon-btn hidden" title="Perkecil ke ikon">–</button>
+      <button id="floatBtn" class="icon-btn" title="Buka kotak mengambang">⧉</button>
+      <button id="logoutBtn" class="icon-btn" title="Disconnect akun">⏻</button>
+    </div>
+
+    <div id="miniBubble" class="mini-bubble" title="Buka lagi">
+      <img id="miniCover" class="mini-cover" alt="" />
+    </div>
+
+    <div class="controls-row">
+      <button id="prevBtn" class="icon-btn" title="Lagu sebelumnya">⏮</button>
+      <button id="playPauseBtn" class="icon-btn play-btn" title="Jeda/Lanjutkan">⏸</button>
+      <button id="nextBtn" class="icon-btn" title="Lagu berikutnya">⏭</button>
+      <span id="curTime" class="time-label">0:00</span>
+      <input id="seekBar" type="range" class="seek-bar" min="0" max="0" value="0" step="1" />
+      <span id="durTime" class="time-label">0:00</span>
+    </div>
+
+    <div id="lyricsScroll" class="lyrics-scroll">
+      <div class="status-msg">Menunggu data dari Spotify…</div>
+    </div>
+    <div class="attribution">
+      <span>Lirik: <a href="https://lrclib.net" target="_blank">LRCLIB</a></span>
+      <span>Now playing via <a href="https://open.spotify.com" target="_blank">Spotify</a></span>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="lyrics.js"></script>
+  <script src="host.js"></script>
+</body>
+</html>
