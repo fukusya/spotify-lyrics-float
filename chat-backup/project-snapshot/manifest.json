@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Spotify Lyrics Float",
+  "version": "1.0.0",
+  "description": "Kotak lirik mengambang (selalu di atas) yang tersinkron dengan lagu yang sedang diputar di akun Spotify-mu.",
+  "permissions": ["identity", "storage", "tabs"],
+  "host_permissions": [
+    "https://api.spotify.com/*",
+    "https://accounts.spotify.com/*",
+    "https://lrclib.net/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
