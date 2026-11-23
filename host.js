@@ -128,6 +128,7 @@ async function loadLyricsFor(item) {
   state.syncedLines = null;
   state.plainText = null;
   state.activeIndex = -1;
+  state.lyricsFailed = false;
   try {
     const data = await fetchLyrics({
       track: item.name,
@@ -144,6 +145,10 @@ async function loadLyricsFor(item) {
     }
   } catch (e) {
     console.warn("Gagal mengambil lirik:", e);
+    state.lyricsFailed = true;
+    state.lyricsRetryAt = Date.now() + 15000;
+    setStatusMessage("Lirik gagal dimuat. Dicoba lagi otomatis…");
+    return;
   }
   renderLyricsSkeleton();
 }
@@ -207,6 +212,8 @@ async function pollCurrentTrack() {
   if (item.id !== state.trackId) {
     state.trackId = item.id;
     setStatusMessage("Memuat lirik…");
+    await loadLyricsFor(item);
+  } else if (state.lyricsFailed && Date.now() >= state.lyricsRetryAt) {
     await loadLyricsFor(item);
   }
 }
